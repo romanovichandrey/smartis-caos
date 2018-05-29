@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.bytechs.ui.controller.RootLayoutOverviewController">
+    <top>
+        <MenuBar style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem fx:id="saveItem" mnemonicParsing="false" text="Сохранить" />
+                        <MenuItem fx:id="saveAsItem" mnemonicParsing="false" text="Сохранить как" />
+                        <MenuItem fx:id="settingsItem" mnemonicParsing="false" text="Настройки" />
+                        <MenuItem fx:id="exitItem" mnemonicParsing="false" text="Выход" />
+                    </items>
+                </Menu>
+                <Menu fx:id="controlDeviceMenu" mnemonicParsing="false" text="Управление">
+                    <items>
+                        <MenuItem fx:id="addDeviceItem" mnemonicParsing="false" onAction="#addTerminalOverview" text="Добавить терминал" />
+                        <MenuItem fx:id="deleteDeviceItem" mnemonicParsing="false" text="Удалить терминал" />
+                    </items>
+                </Menu>
+                <Menu fx:id="reportsMenu" mnemonicParsing="false" text="Отчеты">
+                    <items>
+                        <MenuItem fx:id="operationalCyclesReportItem" mnemonicParsing="false" text="Отчет об оперциклах" />
+                    </items>
+                </Menu>
+                <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Набор инструментов">
+                    <items>
+                        <MenuItem fx:id="usersManagerItem" mnemonicParsing="false" onAction="#usersManagerOverview" text="Управление пользователями">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/user16.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                    </items>
+                </Menu>
+                <Menu fx:id="referenceMenu" mnemonicParsing="false" text="Справочники">
+                    <items>
+                        <MenuItem fx:id="aboutTheProgramItem" mnemonicParsing="false" text="О программе" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <fx:include source="view/TerminalOverview.fxml" />
+    </center>
+</BorderPane>

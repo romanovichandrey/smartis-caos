@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.bytechs.ui.controller.TerminalOverviewController">
+   <children>
+      <SplitPane dividerPositions="0.7575757575757576" layoutX="371.0" layoutY="202.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <items>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1024.0">
+               <children>
+                  <TableView fx:id="terminalTable" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="terminalIDColumn" prefWidth="75.0" text="Терминал" />
+                      <TableColumn fx:id="logicalNameColumn" prefWidth="100.0" text="Логическое имя" />
+                        <TableColumn fx:id="hostColumn" prefWidth="75.0" text="IP адрес" />
+                        <TableColumn fx:id="portColumn" prefWidth="75.0" text="Порт" />
+                        <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Адрес" />
+                        <TableColumn fx:id="overallStatusColumn" prefWidth="100.0" text="Общий статус" />
+                        <TableColumn fx:id="networkColumn" prefWidth="75.0" text="Связь" />
+                        <TableColumn fx:id="bdmColumn" prefWidth="119.0" text="Купюроприёмник" />
+                        <TableColumn fx:id="iButtonColumn" prefWidth="57.0" text="iButton" />
+                        <TableColumn fx:id="printerColumn" prefWidth="60.0" text="Принтер" />
+                        <TableColumn fx:id="banknoteCountColumn" prefWidth="137.0" text="Количество банкнот" />
+                        <TableColumn fx:id="pingColumn" prefWidth="71.0" text="Пинг" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children></AnchorPane>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" layoutX="290.0" layoutY="7.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1024.0">
+                           <children>
+                              <TitledPane animated="false" text="Купюрное строение" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <content>
+                                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1024.0">
+                                       <children>
+                                          <TableView fx:id="cashTable" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="currencyColumn" prefWidth="75.0" text="Валюта" />
+                                              <TableColumn fx:id="denominationColumn" prefWidth="75.0" text="Номинал" />
+                                                <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Количество" />
+                                                <TableColumn fx:id="sumColumn" prefWidth="75.0" text="Сумма" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1024.0">
+                           <children>
+                              <TitledPane animated="false" text="Последние сообщения" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <content>
+                                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1024.0">
+                                       <children>
+                                          <TableView fx:id="messageTable" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="messageDateColumn" prefWidth="109.00000154972076" text="Время" />
+                                              <TableColumn fx:id="messageColumn" prefWidth="360.99999237060547" text="Сообщение" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+      <ToolBar layoutX="121.0" layoutY="-6.0" minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

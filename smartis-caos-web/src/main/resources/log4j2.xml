@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">[%-5level] %d{dd.MM.yyyy HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+        <Property name="log-path">logs</Property>
+    </Properties>
+    <Appenders>
+        <RollingRandomAccessFile name="SmartisCaosServerAppender"
+                                 fileName="${log-path}/smartisCaosServerLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/smartisCaosServerLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="DaoLevelAppender" fileName="${log-path}/daoLevelLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/daoLevelLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="DaoExceptionAppender" fileName="${log-path}/daoExceptionLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/daoExceptionLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="ServiceLevelAppender" fileName="${log-path}/serviceLevelLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/serviceLevelLog%d{dd-MM-yyyy}.log.gz">
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="ServiceExceptionAppender" fileName="${log-path}/serviceExceptionLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/serviceExceptionLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="WebLevelAppender" fileName="${log-path}/webLevelLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/webLevelLog%d{dd-MM-yyyy}.log.gz">
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="WebExceptionAppender" fileName="${log-path}/webExceptionLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/webExceptionLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="JdbcBindParametersAppender" fileName="${log-path}/jdbcBindParametersLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/jdbcBindParametersLog%d{dd-MM-yyyy}.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="SQLStatementsAppender" fileName="${log-path}/sqlStatementsLog.log"
+                                 filePattern="${log-path}/archives/archive%d{dd-MM-yyyy}/sqlStatementsLog%d{dd-MM-yyyy}.log.gz">
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <!-- Log service level project -->
+        <Logger name="ServiceLogger" level="INFO" additivity="false">
+            <AppenderRef ref="ServiceLevelAppender" level="INFO"/>
+            <AppenderRef ref="ServiceExceptionAppender" level="ERROR"/>
+        </Logger>
+
+        <!-- Log web level project -->
+        <Logger name="WebLogger" level="INFO" additivity="false">
+            <AppenderRef ref="WebLevelAppender" level="INFO"/>
+            <AppenderRef ref="WebExceptionAppender" level="ERROR"/>
+        </Logger>
+
+        <!-- Log all SQL DDL statements as they are executed -->
+        <Logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log the state of all entities (max 20 entities) associated with the session at flush time -->
+        <Logger name="org.hibernate.pretty" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log all second-level cache activity -->
+        <Logger name="org.hibernate.cache" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log transaction related activity -->
+        <Logger name="org.hibernate.transaction" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log all JDBC resource acquisition -->
+        <Logger name="org.hibernate.jdbc" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log HQL and SQL ASTs during query parsing -->
+        <Logger name="org.hibernate.hql.ast.AST" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log all JAAS authorization requests -->
+        <Logger name="org.hibernate.secure" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log SQL statements -->
+        <Logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+            <AppenderRef ref="SQLStatementsAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log all JDBC parameters -->
+        <Logger name="org.hibernate.type" level="DEBUG" additivity="false">
+            <AppenderRef ref="JdbcBindParametersAppender" level="DEBUG"/>
+        </Logger>
+
+        <!-- Log all hibernate exceptions -->
+        <Logger name="org.hibernate.exception" level="WARN" additivity="false">
+            <AppenderRef ref="DaoExceptionAppender" level="ERROR"/>
+        </Logger>
+
+        <!-- Log everything (a lot of information, but very useful for troubleshooting) -->
+        <Logger name="org.hibernate" level="INFO" additivity="false">
+            <AppenderRef ref="DaoLevelAppender" level="INFO"/>
+            <AppenderRef ref="DaoExceptionAppender" level="ERROR"/>
+        </Logger>
+
+        <!-- Log everything (a lot of information, but very useful for troubleshooting) -->
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="WebLevelAppender" level="INFO"/>
+            <AppenderRef ref="WebExceptionAppender" level="ERROR"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="SmartisCaosServerAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
